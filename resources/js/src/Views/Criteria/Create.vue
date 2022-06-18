@@ -13,11 +13,11 @@
             </div>
             <form method="POST" @submit.prevent="handleSubmit">
                 <div class="card-header">
-                    <h4>Form Tambahkan User</h4>
+                    <h4>Form Tambahkan Criteria</h4>
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <label>Nama</label>
+                        <label>Name</label>
                         <input
                             type="text"
                             :class="`form-control ${
@@ -30,43 +30,44 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Username</label>
-                        <input
+                        <label>Attribute</label>
+                        <select
                             type="text"
                             :class="`form-control ${
-                                form.errors.username && `is-invalid`
+                                form.errors.attribute && `is-invalid`
                             } `"
-                            v-model="form.username"
-                        />
+                            v-model="form.attribute"
+                        >
+                            <option value="">Pilih Criteria</option>
+                            <option value="benefit">Benefit</option>
+                            <option value="cost">Cost</option>
+                        </select>
                         <div
                             class="invalid-feedback"
-                            v-if="form.errors.username"
+                            v-if="form.errors.attribute"
                         >
-                            {{ form.errors.username }}
+                            {{ form.errors.attribute }}
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Email ( Optional )</label>
+                        <label>Type ( Optional )</label>
                         <input
-                            type="email"
+                            type="text"
                             class="form-control"
-                            v-model="form.email"
+                            v-model="form.type"
                         />
                     </div>
                     <div class="form-group mb-0">
-                        <label>Password</label>
+                        <label>Weight / Bobot (ex : 1.5)</label>
                         <input
                             type="text"
                             :class="`form-control ${
-                                form.errors.password && `is-invalid`
+                                form.errors.weight && `is-invalid`
                             } `"
-                            v-model="form.password"
+                            v-model="form.weight"
                         />
-                        <div
-                            class="invalid-feedback"
-                            v-if="form.errors.password"
-                        >
-                            {{ form.errors.password }}
+                        <div class="invalid-feedback" v-if="form.errors.weight">
+                            {{ form.errors.weight }}
                         </div>
                     </div>
                 </div>
@@ -89,19 +90,23 @@ export default {
         return {
             form: this.$inertia.form({
                 name: null,
-                email: null,
-                username: null,
-                password: null,
+                attribute: null,
+                type: null,
+                weight: null,
                 _token: this.$page.props.csrf_token,
             }),
         };
     },
     methods: {
         handleSubmit() {
-            return this.form.post(this.$route("users.store"), {
+            return this.form.post(this.$route("criteria.store"), {
                 onSuccess: () => {
-                    Swal.fire("Users", "Berhasil Menambahkan User", "success");
-                    this.form.reset("name", "email", "username", "password");
+                    Swal.fire(
+                        "Criteria",
+                        "Berhasil Menambahkan Criteria",
+                        "success"
+                    );
+                    this.form.reset("name", "attribute", "type", "weight");
                 },
             });
         },

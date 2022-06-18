@@ -17,3 +17,8 @@ Route::get('/', [\App\Http\Controllers\HomeController::class,'Index'])->name('ho
 
 // Users
 Route::resource('/users',\App\Http\Controllers\UsersController::class);
+Route::resource('/criteria',\App\Http\Controllers\CriteriaController::class);
+Route::get('/criteria/option/{id}',[\App\Http\Controllers\CriteriaOptionController::class,'index'])->name('criteria.option');
+Route::delete('/criteria/option/delete/{optid}',[\App\Http\Controllers\CriteriaOptionController::class,'destroy'])->name('criteria.option.delete');
+Route::post('/criteria/option/store',[\App\Http\Controllers\CriteriaOptionController::class,'store'])->name('criteria.option.store');
+Route::get('/criteria/option/{id}/edit',[\App\Http\Controllers\CriteriaOptionController::class,'edit'])->name('criteria.option.edit');

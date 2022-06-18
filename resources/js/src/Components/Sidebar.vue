@@ -21,8 +21,8 @@
                     >
                 </li>
                 <li>
-                    <a class="nav-link" href="blank.html"
-                        ><i class="fa fa-list"></i> <span>Kriteria</span></a
+                    <Link class="nav-link" :href="$route('criteria.index')"
+                        ><i class="fa fa-list"></i> <span>Kriteria</span></Link
                     >
                 </li>
                 <li>

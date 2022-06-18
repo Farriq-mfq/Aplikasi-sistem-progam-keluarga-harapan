@@ -17,7 +17,7 @@ class Criterias extends Migration
             $table->id();
             $table->string('name');
             $table->enum('attribute',['benefit','cost']);
-            $table->string('type');
+            $table->string('type')->nullable();
             $table->decimal('weight');
             $table->timestamps();
         });

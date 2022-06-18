@@ -47,7 +47,11 @@
                     </div>
                     <div class="form-group">
                         <label>Email ( Optional )</label>
-                        <input type="email" class="form-control" />
+                        <input
+                            type="email"
+                            class="form-control"
+                            v-model="form.email"
+                        />
                     </div>
                     <div class="form-group mb-0">
                         <label>Password</label>
@@ -82,7 +86,7 @@ import Swal from "sweetalert2";
 export default {
     layout: defaultVue,
     props: {
-        user: Array,
+        user: Object,
     },
     data() {
         return {
@@ -97,10 +101,9 @@ export default {
     },
     methods: {
         handleSubmit() {
-            return this.form.put(this.$route("users.update"), {
+            return this.form.put(this.$route("users.update", this.user.id), {
                 onSuccess: () => {
-                    Swal.fire("Users", "Berhasil Menambahkan User", "success");
-                    this.form.reset("name", "email", "username", "password");
+                    Swal.fire("Users", "Berhasil Mengedit User", "success");
                 },
             });
         },

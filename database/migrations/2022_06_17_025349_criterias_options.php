@@ -15,8 +15,9 @@ class CriteriasOptions extends Migration
     {
         Schema::create('criteria_option',function(Blueprint $table){
             $table->id();
-            $table->foreignId('criteria_id')->references('id')->on('criteria');
+            $table->foreignId('criteria_id')->references('id')->on('criteria')->onDelete('cascade');
             $table->string('name');
+            $table->enum('klasifikasi',['sangat rendah','rendah','sedang','tinggi','sangat tinggi']);
             $table->decimal('value');
             $table->timestamps();
         });

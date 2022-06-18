@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
@@ -51,7 +52,7 @@ class UsersController extends Controller
         $saveuser = User::create([
             'name'=>$request->name,
             'username'=>$request->username,
-            'password'=>$request->password
+            'password'=>Hash::make($request->password)
         ]);
         if($saveuser){
             return session()->flash('alert',['type'=>'success','message'=>'Berhasil Menambahkan Users']);
@@ -92,7 +93,34 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'username'=>'required',
+        ]);
+        if($request->password){
+            $update = User::find($id)->update([
+                'name'=>$request->name,
+                'username'=>$request->username,
+                'password'=>Hash::make($request->password)
+            ]);
+        }else if($request->email){
+            $update = User::find($id)->update([
+                'name'=>$request->name,
+                'username'=>$request->username,
+                'email'=>$request->email,
+                'password'=>Hash::make($request->password)
+            ]);
+        }else{
+            $update = User::find($id)->update([
+                'name'=>$request->name,
+                'username'=>$request->username,
+            ]);
+        }
+        if($update){
+            return session()->flash('alert',['type'=>'success','message'=>'Berhasil Mengupdate Users']);
+        }else{
+            return session()->flash('alert',['type'=>'danger','message'=>'Gagal Mengupdate Users']);
+        }
     }
 
     /**
@@ -104,6 +132,5 @@ class UsersController extends Controller
     public function destroy($id)
     {
         User::find($id)->delete();
-        Redirect::route('users.index');
     }
 }

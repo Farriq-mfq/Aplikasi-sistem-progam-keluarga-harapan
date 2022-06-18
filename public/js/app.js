@@ -3334,7 +3334,7 @@ __webpack_require__.r(__webpack_exports__);
         replace: true,
         preserveScroll: true,
         onSuccess: function onSuccess() {
-          sweetalert2__WEBPACK_IMPORTED_MODULE_3___default().fire("Options!", "Berhasil Menambahkan Options.", "success");
+          sweetalert2__WEBPACK_IMPORTED_MODULE_3___default().fire("Options!", "Berhasil Menambahkan Options .", "success");
 
           _this2.form.reset("name", "klasifikasi", "value");
         }

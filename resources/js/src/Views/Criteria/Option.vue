@@ -232,7 +232,7 @@ export default {
                 onSuccess: () => {
                     Swal.fire(
                         "Options!",
-                        "Berhasil Menambahkan Options.",
+                        "Berhasil Menambahkan Options .",
                         "success"
                     );
                     this.form.reset("name", "klasifikasi", "value");

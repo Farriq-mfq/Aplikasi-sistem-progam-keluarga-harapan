@@ -40,7 +40,8 @@ class HandleInertiaRequests extends Middleware
             'session'=>[
                 'alert'=>fn () => $request->session()->get('alert')
             ],
-            'csrf_token' => csrf_token()
+            'csrf_token' => csrf_token(),
+            'auth'=> fn() => $request->user()
         ]);
     }
 }

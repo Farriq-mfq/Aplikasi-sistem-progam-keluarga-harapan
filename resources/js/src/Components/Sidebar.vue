@@ -26,9 +26,9 @@
                     >
                 </li>
                 <li>
-                    <a class="nav-link" href="blank.html"
+                    <Link class="nav-link" :href="$route('alternative.index')"
                         ><i class="fa fa-users"></i>
-                        <span>Data Penduduk</span></a
+                        <span>Data Penduduk</span></Link
                     >
                 </li>
                 <li>

@@ -11,6 +11,7 @@
         <!-- Template CSS -->
         <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
         <link rel="stylesheet" href="{{asset('assets/css/components.css')}}">
+        <link rel="stylesheet" href="{{asset('css/app.css')}}">
         <!-- General CSS Files -->
         <script src="{{ mix('/js/app.js') }}" defer></script>
         @inertiaHead

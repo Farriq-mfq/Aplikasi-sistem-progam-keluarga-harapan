@@ -109,6 +109,7 @@ export default {
             this.authForm.post(this.$route("auth.action"), {
                 onSuccess: () => {
                     this.authForm.reset("username", "password");
+                    this.times = 0;
                 },
                 onError: () => {
                     this.authForm.reset("username", "password");

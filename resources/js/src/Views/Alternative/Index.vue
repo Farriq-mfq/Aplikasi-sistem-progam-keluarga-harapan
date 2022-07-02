@@ -20,7 +20,7 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <Link
-                            :href="$route('users.create')"
+                            :href="$route('alternative.create')"
                             class="btn btn-primary mb-4"
                             >Tambahkan Alternative <i class="fa fa-plus"></i
                         ></Link>

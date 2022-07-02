@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Alternative;
+use App\Models\Alternative as ModelsAlternative;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class AlternativeController extends Controller
@@ -33,7 +35,7 @@ class AlternativeController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Alternative/Create');
     }
 
     /**
@@ -44,7 +46,29 @@ class AlternativeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'NIK'=>'required|numeric|unique:alternative,NIK',
+            'name'=>'required',
+            'address'=>'required',
+            'gender'=>'required',
+            'foto'=>'required|mimes:jpg,jpeg,png|image'
+        ]);
+        $name_foto = uniqid().'.'.$request->file('foto')->getClientOriginalExtension();
+
+        $simpan = ModelsAlternative::create([
+            'user_id'=>auth()->user()->id,
+            'NIK'=>$request->NIK,
+            'name'=>$request->name,
+            'address'=>$request->address,
+            'foto'=>$name_foto
+        ]);
+        if($simpan){
+            $request->file('foto')->storePubliclyAs('alternative',$name_foto);
+            return session()->flash('alert',['type'=>'success','message'=>'Berhasil Menambahkan Alternative']);
+        }else{
+            return session()->flash('alert',['type'=>'danger','message'=>'Gagal Menambahkan Alternative']);
+        }
+
     }
 
     /**

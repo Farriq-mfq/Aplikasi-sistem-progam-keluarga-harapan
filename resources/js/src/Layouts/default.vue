@@ -52,7 +52,9 @@
                 </div>
 
                 <div class="section-body">
-                    <slot></slot>
+                    <Transition name="fade">
+                        <slot></slot>
+                    </Transition>
                 </div>
             </section>
         </div>

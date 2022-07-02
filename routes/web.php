@@ -26,6 +26,12 @@ Route::middleware('auth')->group(function(){
     Route::resource('/alternative',\App\Http\Controllers\AlternativeController::class);
     // auth
     Route::post('/logout',[\App\Http\Controllers\AuthController::class,'logout'])->name('auth.logout'); 
+
+    // penilaian
+    Route::get('/penilaian',[\App\Http\Controllers\PenilaianController::class,'index'])->name('penilaian.index');
+    Route::post('/penilaian/check',[\App\Http\Controllers\PenilaianController::class,'checkNik'])->name('penilaian.check');
+    Route::post('/penilaian',[\App\Http\Controllers\PenilaianController::class,'insertPenilaian'])->name('penilaian.post');
+    Route::get('/penilaian/survey',[\App\Http\Controllers\PenilaianController::class,'survey'])->name('penilaian.survey');
 });
 Route::middleware('guest')->group(function(){
     Route::get('/login',[\App\Http\Controllers\AuthController::class,'login'])->name('auth.login'); 

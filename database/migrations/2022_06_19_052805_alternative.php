@@ -20,6 +20,7 @@ class Alternative extends Migration
             $table->string('name');
             $table->string('address');
             $table->enum('gender',['pria','wanita']);
+            $table->string('foto');
             $table->timestamps();
         });
     }

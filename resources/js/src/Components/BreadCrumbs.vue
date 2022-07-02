@@ -8,9 +8,7 @@
             v-for="breadcrumb in breadcrumbs"
             :key="breadcrumb"
         >
-            <Link :href="`/${breadcrumb}`" v-if="breadcrumb != ''">
-                {{ breadcrumb.charAt(0).toUpperCase() + breadcrumb.slice("1") }}
-            </Link>
+            {{ breadcrumb.charAt(0).toUpperCase() + breadcrumb.slice("1") }}
         </div>
     </div>
 </template>

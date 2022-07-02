@@ -15,12 +15,17 @@ class AlternativeValue extends Migration
     {
         Schema::create('alternative_value',function(Blueprint $table){
             $table->id();
-            $table->foreignId('alternative_id')->references('id')->on('alternative');
-            $table->foreignId('criteria_id')->references('id')->on('criteria');
-            $table->foreignId('criteria_option_id')->references('id')->on('criteria_option');
-            $table->decimal('weight');
-            $table->bigInteger('value');
+            $table->unsignedBigInteger('alternative_id')->index()->nullable();
+            $table->unsignedBigInteger('criteria_id')->index()->nullable();
+            $table->unsignedBigInteger('criteria_option_id')->index()->nullable();
+            $table->decimal('weight');   
+            $table->decimal('value');
             $table->timestamps();
+
+            // foreign
+            $table->foreign('alternative_id')->references('id')->on('alternative')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('criteria_id')->references('id')->on('criteria')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('criteria_option_id')->references('id')->on('criteria_option')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

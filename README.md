@@ -3,6 +3,9 @@
 <b>Algoritma perhitungan Simple Additive Weighting (SAW)</b>
 
 ## Cara menjalankan 
+ ```
+git clone https://github.com/Farriq-mfq/Aplikasi-sistem-progam-keluarga-harapan.git
+```
  - buat database dan ketik command ``php artisan migrate`` maka table auto generate
 ## Role user
  - Admin ``username:admin & password:password``

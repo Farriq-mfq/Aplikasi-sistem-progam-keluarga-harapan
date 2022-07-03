@@ -5,10 +5,12 @@ use App\Models\AlternativeValue;
 use App\Models\Alternative;
 use App\Models\Criteria;
 use App\Models\CriteriaOption;
+use App\Models\Result;
 use Faker\Core\Number;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 
 class PenilaianController extends Controller
@@ -70,6 +72,24 @@ class PenilaianController extends Controller
         }
         return Inertia::render('Penilaian/Survey',['criterias'=>$arr,'data_alternative'=> session()->get('data_alternative')]);
     }
+    public function insertRes(Request $request)
+    {
+        foreach ($request->data as $res) {
+            if($res['total'] != 0){
+                if(Result::where('alternative_id',$res['id'])->first() == null){
+                    Result::create([
+                        'alternative_id'=>$res['id'],
+                        'total'=>$res['total']
+                    ]);
+                }else{
+                    Result::where('alternative_id',$res['id'])->update([
+                        'alternative_id'=>$res['id'],
+                        'total'=>$res['total']
+                    ]);
+                }
+            }
+        }
+    }
     protected function get_nilai($rq){
         $criterias = Criteria::all();
         if($rq->search){
@@ -87,10 +107,12 @@ class PenilaianController extends Controller
                     }
                 }
             }
-            if($cr->attribute == 'cost'){
-                $arr[$cr->id] = count($arr[$cr->id]) ?? min($arr[$cr->id]); 
-            }elseif($cr->attribute == 'benefit'){
-                $arr[$cr->id] =  count($arr[$cr->id]) ?? max($arr[$cr->id]); 
+            if(count($arr[$cr->id])){
+                if($cr->attribute == 'cost'){
+                    $arr[$cr->id] = min($arr[$cr->id]); 
+                }elseif($cr->attribute == 'benefit'){
+                    $arr[$cr->id] = max($arr[$cr->id]); 
+                }
             }
         }
         return [

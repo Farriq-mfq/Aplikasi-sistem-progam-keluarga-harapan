@@ -15,12 +15,12 @@
                     >
                 </li>
                 <li class="menu-header">FITUR</li>
-                <li>
+                <li v-if="$page.props.auth.role == 'admin'">
                     <Link class="nav-link" :href="$route('users.index')"
                         ><i class="fa fa-user"></i> <span>Users</span></Link
                     >
                 </li>
-                <li>
+                <li v-if="$page.props.auth.role == 'admin'">
                     <Link class="nav-link" :href="$route('criteria.index')"
                         ><i class="fa fa-list"></i> <span>Kriteria</span></Link
                     >
@@ -37,9 +37,10 @@
                         <span>Penilaian</span></Link
                     >
                 </li>
-                <li>
-                    <a class="nav-link" href="blank.html"
-                        ><i class="fa fa-cog"></i> <span>Settings</span></a
+                <li v-if="$page.props.auth.role == 'admin'">
+                    <Link class="nav-link" :href="$route('setting.index')"
+                        ><i class="fa fa-cog"></i>
+                        <span>Settings Nilai</span></Link
                     >
                 </li>
             </ul>

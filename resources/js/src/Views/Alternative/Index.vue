@@ -32,7 +32,9 @@
                                     <th>Gender</th>
                                     <th>Penginput data</th>
                                     <th>Tanggal</th>
-                                    <th>Action</th>
+                                    <th v-if="$page.props.auth.role == 'admin'">
+                                        Action
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody v-if="alternatives.data.length">
@@ -54,18 +56,7 @@
                                     <td>{{ alternative.gender }}</td>
                                     <td>{{ alternative.penginput }}</td>
                                     <td>{{ alternative.created_at }}</td>
-                                    <td>
-                                        <!-- <Link
-                                            :href="
-                                                $route(
-                                                    'alternatives.edit',
-                                                    user.id
-                                                )
-                                            "
-                                            class="btn btn-primary"
-                                        >
-                                            <i class="fa fa-edit"></i>
-                                        </Link> -->
+                                    <td v-if="$page.props.auth.role == 'admin'">
                                         <button
                                             @click.prevent="
                                                 handleDelete(alternative.id)

@@ -66,9 +66,10 @@
                                                 v-for="criteria in penilaian.criteria"
                                                 :key="criteria.id"
                                             >
-                                                {{ criteria.name }}
+                                                {{ criteria.name }} -{{
+                                                    criteria.attribute
+                                                }}
                                             </th>
-                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody v-if="penilaian.alternative">
@@ -84,14 +85,6 @@
                                                 :key="idx"
                                             >
                                                 {{ nilai.value }}
-                                            </td>
-                                            <td>
-                                                <Link
-                                                    href="/"
-                                                    class="btn btn-primary"
-                                                >
-                                                    <i class="fa fa-list"></i>
-                                                </Link>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -274,7 +267,6 @@ export default {
             search_total: null,
             bobot: [],
             rangking: [],
-            total: 0,
         };
     },
     methods: {
@@ -309,6 +301,7 @@ export default {
                         nilaiData.criteria.weight * parseFloat(normalisasi);
                 }
                 this.rangking.push({
+                    id: pnData.id,
                     name: pnData.name,
                     nik: pnData.NIK,
                     total: total.toFixed(2),
@@ -342,6 +335,13 @@ export default {
     },
     mounted() {
         this.getNilai();
+        return this.$inertia.post(
+            this.$route("penilaian.res"),
+            {
+                data: this.rangking,
+            },
+            { preserveScroll: true, preserveState: true, replace: true }
+        );
     },
 };
 </script>

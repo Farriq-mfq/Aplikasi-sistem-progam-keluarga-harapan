@@ -16,12 +16,17 @@ Route::middleware('auth')->group(function(){
     Route::get('/', [\App\Http\Controllers\HomeController::class,'Index'])->name('home.index');
     
     // Users
-    Route::resource('/users',\App\Http\Controllers\UsersController::class);
-    Route::resource('/criteria',\App\Http\Controllers\CriteriaController::class);
-    Route::get('/criteria/option/{id}',[\App\Http\Controllers\CriteriaOptionController::class,'index'])->name('criteria.option');
-    Route::delete('/criteria/option/delete/{optid}',[\App\Http\Controllers\CriteriaOptionController::class,'destroy'])->name('criteria.option.delete');
-    Route::post('/criteria/option/store',[\App\Http\Controllers\CriteriaOptionController::class,'store'])->name('criteria.option.store');
-    Route::get('/criteria/option/{id}/edit',[\App\Http\Controllers\CriteriaOptionController::class,'edit'])->name('criteria.option.edit');
+    Route::middleware('admin')->group(function(){
+        Route::resource('/users',\App\Http\Controllers\UsersController::class);
+        Route::resource('/criteria',\App\Http\Controllers\CriteriaController::class);
+        Route::get('/criteria/option/{id}',[\App\Http\Controllers\CriteriaOptionController::class,'index'])->name('criteria.option');
+        Route::delete('/criteria/option/delete/{optid}',[\App\Http\Controllers\CriteriaOptionController::class,'destroy'])->name('criteria.option.delete');
+        Route::post('/criteria/option/store',[\App\Http\Controllers\CriteriaOptionController::class,'store'])->name('criteria.option.store');
+        Route::get('/criteria/option/{id}/edit',[\App\Http\Controllers\CriteriaOptionController::class,'edit'])->name('criteria.option.edit');
+        // setting
+        Route::get('/setting',[\App\Http\Controllers\SettingController::class,'index'])->name('setting.index');
+        Route::post('/setting',[\App\Http\Controllers\SettingController::class,'change'])->name('setting.post');
+    });
     // alternative
     Route::resource('/alternative',\App\Http\Controllers\AlternativeController::class);
     // auth
@@ -32,6 +37,7 @@ Route::middleware('auth')->group(function(){
     Route::post('/penilaian/check',[\App\Http\Controllers\PenilaianController::class,'checkNik'])->name('penilaian.check');
     Route::post('/penilaian',[\App\Http\Controllers\PenilaianController::class,'insertPenilaian'])->name('penilaian.post');
     Route::get('/penilaian/survey',[\App\Http\Controllers\PenilaianController::class,'survey'])->name('penilaian.survey');
+    Route::post('/penilaian/res',[\App\Http\Controllers\PenilaianController::class,'insertRes'])->name('penilaian.res');
 });
 Route::middleware('guest')->group(function(){
     Route::get('/login',[\App\Http\Controllers\AuthController::class,'login'])->name('auth.login'); 

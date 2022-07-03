@@ -31,7 +31,9 @@
                             />
                             <span class="selectgroup-button">
                                 {{ criteria_options.name }} -
-                                {{ criteria_options.klasifikasi }}
+                                {{ criteria_options.klasifikasi }} -{{
+                                    criteria_options.value
+                                }}
                             </span>
                         </label>
                         <div

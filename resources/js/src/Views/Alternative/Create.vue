@@ -1,5 +1,7 @@
 <template>
     <div class="row">
+        <Head title="Alternative Create" />
+
         <div class="col-12">
             <div
                 :class="`alert ${
@@ -119,9 +121,12 @@
 
 <script>
 import defaultVue from "../../Layouts/default.vue";
-import Swal from "sweetalert2";
+import { Head } from "@inertiajs/inertia-vue";
 export default {
     layout: defaultVue,
+    components: {
+        Head,
+    },
     data() {
         return {
             form: this.$inertia.form({

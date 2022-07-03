@@ -1,5 +1,7 @@
 <template>
     <div class="row">
+        <Head title="Edit Criteria" />
+
         <div class="col-12">
             <div
                 :class="`alert ${
@@ -83,11 +85,15 @@
 
 <script>
 import defaultVue from "../../Layouts/default.vue";
+import { Head } from "@inertiajs/inertia-vue";
 import Swal from "sweetalert2";
 export default {
     layout: defaultVue,
     props: {
         criteria: Object,
+    },
+    components: {
+        Head,
     },
     data() {
         return {

@@ -1,5 +1,7 @@
 <template>
     <section class="section">
+        <Head title="Login" />
+
         <div class="container mt-5">
             <div class="row">
                 <div
@@ -91,7 +93,12 @@
 </template>
 
 <script>
+import { Head } from "@inertiajs/inertia-vue";
+
 export default {
+    components: {
+        Head,
+    },
     props: {
         errors: Object,
     },

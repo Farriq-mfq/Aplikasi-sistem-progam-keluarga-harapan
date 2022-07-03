@@ -1,5 +1,7 @@
 <template>
     <div class="row">
+        <Head title="Penilaian" />
+
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-12">
@@ -251,7 +253,8 @@
 
 <script>
 import defaultVue from "../../Layouts/default.vue";
-import Pagination from "../../Components/Pagination.vue";
+import { Head } from "@inertiajs/inertia-vue";
+
 export default {
     layout: defaultVue,
     props: {
@@ -312,7 +315,7 @@ export default {
             });
         },
     },
-    components: { Pagination },
+    components: { Head },
     watch: {
         search_total(val) {
             let hasil = this.rangking.filter((el) => {

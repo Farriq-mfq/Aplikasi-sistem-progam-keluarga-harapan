@@ -1,5 +1,6 @@
 <template>
     <div class="row">
+        <Head title="Dashboard" />
         <div class="col-md-12">
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
@@ -100,10 +101,14 @@
 
 <script>
 import Default from "../Layouts/default.vue";
+import { Head } from "@inertiajs/inertia-vue";
 export default {
     layout: Default,
     props: {
         info: Array,
+    },
+    components: {
+        Head,
     },
 };
 </script>

@@ -1,5 +1,7 @@
 <template>
     <div class="row">
+        <Head title="Criteria" />
+
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
@@ -100,12 +102,12 @@
 <script>
 import Default from "../../Layouts/default.vue";
 import PaginationVue from "../../Components/Pagination.vue";
-import { Link } from "@inertiajs/inertia-vue";
+import { Link, Head } from "@inertiajs/inertia-vue";
 import Swal from "sweetalert2";
 
 export default {
     layout: Default,
-    components: { PaginationVue, Link },
+    components: { PaginationVue, Link, Head },
     props: {
         criterias: Object,
     },

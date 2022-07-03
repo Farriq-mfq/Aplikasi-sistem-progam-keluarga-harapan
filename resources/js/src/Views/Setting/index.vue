@@ -1,5 +1,6 @@
 <template>
     <div class="row">
+        <Head title="Setting" />
         <div class="col-12">
             <div class="card card-primary">
                 <div class="card-header">
@@ -54,12 +55,17 @@
 </template>
 
 <script>
+import { Head } from "@inertiajs/inertia-vue";
 import Swal from "sweetalert2";
 import defaultVue from "../../Layouts/default.vue";
+
 export default {
     layout: defaultVue,
     props: {
         nilai: Object,
+    },
+    components: {
+        Head,
     },
     data() {
         return {

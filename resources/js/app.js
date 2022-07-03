@@ -8,6 +8,7 @@ InertiaProgress.init({
     color: "#808080",
 });
 createInertiaApp({
+    title: (title) => `${title} - sipkh`,
     resolve: (name) => require(`./src/Views/${name}`),
     setup({ el, App, props, plugin }) {
         Vue.use(plugin);
